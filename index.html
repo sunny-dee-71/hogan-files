@@ -3,394 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THE HOGAN FILES // CORRUPTED ARCHIVE</title>
+<title>The Hogan Files</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 :root{
-    --bg:#020202;
-    --panel:#0b0b0b;
-    --panel2:#141414;
-    --text:#f2f2f2;
-    --muted:#9a9a9a;
-    --accent:#ff003c;
-    --accent2:#8a00ff;
-    --border:#1f1f1f;
+    --bg:#070707;
+    --panel:#111;
+    --panel2:#1a1a1a;
+    --text:#f5f5f5;
+    --muted:#a0a0a0;
+    --accent:#ff2d55;
+    --accent2:#a855ff;
 }
 
 body{
     background:
-        radial-gradient(circle at 10% 10%, rgba(255,0,60,0.25), transparent 40%),
-        radial-gradient(circle at 90% 90%, rgba(138,0,255,0.25), transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 60%),
+        radial-gradient(circle at 20% 10%, rgba(255,45,85,0.2), transparent 40%),
+        radial-gradient(circle at 80% 90%, rgba(168,85,255,0.2), transparent 40%),
         var(--bg);
     color:var(--text);
-    font-family:'Inter',sans-serif;
+    font-family:Inter;
     overflow-x:hidden;
-    animation: pulse 6s infinite;
-}
-
-@keyframes pulse{
-    0%,100%{filter:hue-rotate(0deg) contrast(1);}
-    50%{filter:hue-rotate(20deg) contrast(1.2);}
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background-image:
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 3px);
-    pointer-events:none;
-    z-index:-1;
-    mix-blend-mode:overlay;
-    animation: scan 2s linear infinite;
-}
-
-@keyframes scan{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(20px);}
-}
-
-.glitch{
-    position:relative;
-    animation: shake 0.4s infinite;
-}
-
-@keyframes shake{
-    0%{transform:translate(0,0);}
-    25%{transform:translate(-1px,1px);}
-    50%{transform:translate(1px,-1px);}
-    75%{transform:translate(-1px,-1px);}
-    100%{transform:translate(0,0);}
 }
 
 .hero{
     min-height:100vh;
     display:flex;
-    align-items:center;
-    justify-content:center;
     flex-direction:column;
+    justify-content:center;
+    align-items:center;
     text-align:center;
     padding:40px;
 }
 
 .hero h1{
-    font-size:clamp(4rem,10vw,10rem);
-    font-family:'Orbitron';
-    font-weight:900;
-    letter-spacing:10px;
-    background:linear-gradient(90deg,var(--accent),#fff,var(--accent2));
+    font-size:clamp(3rem,10vw,8rem);
+    font-family:Orbitron;
+    letter-spacing:6px;
+    background:linear-gradient(90deg,var(--accent),white,var(--accent2));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    text-shadow:0 0 30px rgba(255,0,60,0.6);
-    animation: flicker 1.5s infinite;
+    animation: float 4s ease-in-out infinite;
 }
 
-@keyframes flicker{
-    0%,100%{opacity:1; filter:blur(0px);}
-    50%{opacity:0.7; filter:blur(1px);}
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
 }
 
 .hero p{
     max-width:900px;
     margin-top:20px;
     color:var(--muted);
-    font-size:1.2rem;
     line-height:1.7;
+    font-size:1.1rem;
 }
 
-.warning{
-    color:var(--accent);
-    font-weight:700;
-    text-shadow:0 0 10px rgba(255,0,60,0.6);
+.highlight{color:var(--accent);font-weight:700}
+
+.section{
+    width:min(1200px,92%);
+    margin:80px auto;
 }
 
-.container{
-    width:min(1400px,95%);
-    margin:auto;
-}
-
-.section-title{
-    font-size:3rem;
-    font-family:'Orbitron';
-    margin:60px 0 30px;
-    background:linear-gradient(90deg,var(--accent),#fff);
+.title{
+    font-size:2.5rem;
+    font-family:Orbitron;
+    margin-bottom:25px;
+    background:linear-gradient(90deg,var(--accent),white);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    animation: glitchText 2s infinite;
 }
 
-@keyframes glitchText{
-    0%{transform:translate(0);}
-    20%{transform:translate(-2px,1px);}
-    40%{transform:translate(2px,-1px);}
-    60%{transform:translate(-1px,2px);}
-    80%{transform:translate(1px,-2px);}
-    100%{transform:translate(0);}
-}
-
-.cards{
+.grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
 }
 
 .card{
     background:linear-gradient(180deg,var(--panel),var(--panel2));
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:30px;
+    padding:25px;
+    border-radius:18px;
     transition:0.3s;
-    position:relative;
-    overflow:hidden;
 }
 
 .card:hover{
-    transform:scale(1.03) rotate(-0.5deg);
-    border-color:var(--accent);
-    box-shadow:0 0 40px rgba(255,0,60,0.3);
-}
-
-.card::after{
-    content:"CONTAINMENT LABEL: GOON STATE ACTIVE";
-    position:absolute;
-    bottom:10px;
-    right:10px;
-    font-size:10px;
-    color:rgba(255,0,60,0.5);
+    transform:translateY(-6px);
+    box-shadow:0 0 30px rgba(255,45,85,0.2);
 }
 
 .card h3{
-    font-family:'Orbitron';
+    font-family:Orbitron;
     margin-bottom:10px;
 }
 
 .card p{
     color:var(--muted);
-    line-height:1.7;
-}
-
-.highlight{
-    color:var(--accent);
-    font-weight:700;
-}
-
-.gif-section{
-    margin:100px 0;
-    border:1px solid #2a2a2a;
-    border-radius:20px;
-    overflow:hidden;
-    background:radial-gradient(circle at center, rgba(255,0,60,0.1), rgba(0,0,0,1));
-}
-
-.gif-wrap{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-}
-
-.gif-wrap img{
-    width:100%;
-    min-height:500px;
-    object-fit:cover;
-    filter:contrast(1.2) saturate(1.4) hue-rotate(10deg);
-    animation: jitter 0.2s infinite;
-}
-
-@keyframes jitter{
-    0%{transform:translate(0,0);}
-    50%{transform:translate(1px,-1px);}
-    100%{transform:translate(0,0);}
-}
-
-.gif-content{
-    padding:50px;
+    line-height:1.6;
 }
 
 .quote{
-    margin-top:20px;
-    padding:20px;
-    border-left:4px solid var(--accent);
+    margin-top:15px;
+    padding:15px;
+    border-left:3px solid var(--accent);
     background:rgba(255,255,255,0.03);
     font-style:italic;
-    color:#fff;
 }
 
 .timeline{
-    position:relative;
-    margin:100px 0;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
 }
 
-.timeline::before{
-    content:"";
-    position:absolute;
-    left:50%;
-    width:4px;
-    height:100%;
-    background:linear-gradient(var(--accent),var(--accent2));
-}
-
-.entry{
-    width:50%;
-    padding:30px;
-}
-
-.entry:nth-child(odd){left:0; text-align:right; position:relative;}
-.entry:nth-child(even){left:50%; position:relative;}
-
-.entry .box{
+.step{
     background:var(--panel);
-    border:1px solid var(--border);
     padding:20px;
     border-radius:15px;
+}
+
+.step h4{
+    font-family:Orbitron;
+    margin-bottom:5px;
 }
 
 .footer{
     text-align:center;
     padding:80px 20px;
-    border-top:1px solid var(--border);
     color:var(--muted);
-}
-
-.footer h2{
-    color:#fff;
-    font-family:'Orbitron';
-    margin-bottom:10px;
-    animation: flicker 1s infinite;
-}
-
-.glow{
-    color:var(--accent);
-    text-shadow:0 0 15px rgba(255,0,60,0.8);
-}
-
-@media(max-width:900px){
-    .gif-wrap{grid-template-columns:1fr;}
-    .timeline::before{left:20px;}
-    .entry{width:100%; left:0 !important; text-align:left;}
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero glitch">
+<section class="hero">
     <h1>THE HOGAN FILES</h1>
     <p>
-        <span class="warning">WARNING:</span> This archive has been marked unstable.
-        Subject: <span class="highlight">James Hogan</span><br><br>
-
-        Evidence suggests prolonged exposure to <span class="highlight">freaky fan art</span>,
-        and repeated activation of a classified mental state known as
-        <span class="highlight">“GOON PROTOCOL”</span> — a fixation loop triggered by extreme aesthetic overload.
+        A completely normal collection of observations about <span class="highlight">James Hogan</span>,
+        his questionable internet habits, and his long-standing obsession with
+        <span class="highlight">freaky fan art</span>, weird edits, and emotionally confusing images.
+        Nothing unusual is happening here.
     </p>
 </section>
 
-<div class="container">
+<section class="section">
+    <div class="title">FREAKY FAN ART COLLECTION</div>
 
-<h2 class="section-title">FAN ART INCIDENT LOGS</h2>
+    <div class="grid">
 
-<div class="cards">
+        <div class="card">
+            <h3>The First Encounter</h3>
+            <p>
+                It started simple. One weird piece of fan art.
+                Then another. Then another. Now the folder is “accidentally” 40GB.
+            </p>
+            <div class="quote">
+                “I just wanted to see what the character would look like… int that position”
+            </div>
+        </div>
 
-<div class="card">
-<h3>ENTRY 001 — THE FIRST IMAGE</h3>
-<p>
-Subject encounters freaky fan art of unknown origin.
-Initial response: curiosity.
-Secondary response: prolonged staring.
-GOON PROTOCOL not yet active.
-</p>
-</div>
+        <div class="card">
+            <h3>The Distortion Phase</h3>
+            <p>
+                Art becomes less normal over time.
+                Faces shift. It gets freakier. Somehow… better (to James Hogan).
+            </p>
+            <div class="quote">
+                “Normal proportions are overrated anyway. He prefers "Ass" anyway.”
+            </div>
+        </div>
 
-<div class="card">
-<h3>ENTRY 014 — GOON STATE DETECTED</h3>
-<p>
-Subject enters first recorded instance of <span class="highlight">GOON STATE</span>.
-Defined as: extended fixation on distorted fan art with loss of time awareness.
-Observers report: “he stopped blinking for an hour.”
-</p>
-</div>
+        <div class="card">
+            <h3>Freaky Fan Art Addiction</h3>
+            <p>
+                At this stage, only “freaky ahh edits” are acceptable.
+                Anything too normal is immediately discarded.
+            </p>
+            <div class="quote">
+                “If it doesn’t make me slightly confused, I don’t want it.”
+            </div>
+        </div>
 
-<div class="card">
-<h3>ENTRY 031 — FULL ACTIVATION</h3>
-<p>
-GOON PROTOCOL permanently engaged.
-Subject cycles between hundreds of freaky fan art images without rest.
-All normal media rejected. Only “uncanny edits” accepted.
-</p>
-</div>
-
-</div>
-
-<h2 class="section-title">ARCHIVED FAN ART FOOTAGE</h2>
-
-<section class="gif-section">
-<div class="gif-wrap">
-
-<img src="https://cdn.discordapp.com/attachments/1124401338453852232/1286060909759828040/waka_-_kopie.gif">
-
-<div class="gif-content">
-<h2>GOON PROTOCOL FEED</h2>
-<p>
-This loop was extracted during a confirmed GOON STATE episode.
-Analysts believe the subject was no longer consuming fan art —
-but becoming synchronized with it.
-</p>
-
-<div class="quote">
-“Once GOON STATE begins… the fan art starts consuming you back.”
-</div>
-</div>
-
-</div>
+    </div>
 </section>
 
-<h2 class="section-title">TRANSFORMATION LOG</h2>
+<section class="section">
+    <div class="title">GOON LOGS</div>
 
-<div class="timeline">
+    <div class="timeline">
 
-<div class="entry">
-<div class="box">
-<h4>PHASE 1</h4>
-<p>“It’s just fan art.”</p>
-</div>
-</div>
+        <div class="step">
+            <h4>Phase 1 — Curiosity</h4>
+            <p>Looks at freaky fan art “for research purposes”.</p>
+        </div>
 
-<div class="entry">
-<div class="box">
-<h4>PHASE 2</h4>
-<p>GOON PROTOCOL begins activation during late-night viewing sessions.</p>
-</div>
-</div>
+        <div class="step">
+            <h4>Phase 2 — Rewatching</h4>
+            <p>Same images viewed repeatedly. No explanation given.</p>
+        </div>
 
-<div class="entry">
-<div class="box">
-<h4>PHASE 3</h4>
-<p>Subject remains in GOON STATE for extended cycles. Reality perception degrades.</p>
-</div>
-</div>
+        <div class="step">
+            <h4>Phase 3 — GOON MODE</h4>
+            <p>
+                He starts to lock in on gooning.
+                His room is covered in white goo!
+            </p>
+        </div>
 
-<div class="entry">
-<div class="box">
-<h4>PHASE 4</h4>
-<p>Subject no longer differentiates between self and fan art.</p>
-</div>
-</div>
+        <div class="step">
+            <h4>Phase 4 — Permanent State</h4>
+            <p>
+                Subject now refers to everything as “peak” or “mid”.
+                Reality is optional.
+            </p>
+        </div>
 
-</div>
+    </div>
+</section>
 
-</div>
+<section class="section">
+    <div class="title">EVERYDAY HOGAN BEHAVIOR</div>
 
-<footer class="footer glitch">
-<h2>END OF FILE?</h2>
-<p><span class="glow">STATUS:</span> GOON PROTOCOL still running in background processes...</p>
+    <div class="grid">
+
+        <div class="card">
+            <h3>Morning Routine</h3>
+            <p>Checks fan art before anything else. Even breakfast waits.</p>
+        </div>
+
+        <div class="card">
+            <h3>Art Philosophy</h3>
+            <p>Believes “slightly freaky art is more honest than perfect art.”</p>
+        </div>
+
+        <div class="card">
+            <h3>Reaction to Normal Art</h3>
+            <p>“Too clean. Needs something… freakier.”</p>
+        </div>
+
+        <div class="card">
+            <h3>Peak Enjoyment State</h3>
+            <p>When fan art is so freaky it stops being normal, and is now just straigt up "Porn".</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+    <div class="title">FINAL OBSERVATION</div>
+
+    <div class="card">
+        <h3>Conclusion</h3>
+        <p>
+            James Hogan does not simply view freaky fan art.
+            He curates it, replays it, studies it, and even goons to it.
+        </p>
+
+        <div class="quote">
+            “At this point, we are unsure whether he is watching the art… or the art is watching him.”
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    The Hogan Files continue to grow. No one is in charge of this anymore.
 </footer>
 
 </body>
