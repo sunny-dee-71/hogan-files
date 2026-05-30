@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Hogan Files</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>THE HOGAN FILES // CORRUPTED ARCHIVE</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -16,24 +15,31 @@
 }
 
 :root{
-    --bg:#050505;
-    --panel:#101010;
-    --panel2:#161616;
-    --text:#f5f5f5;
-    --muted:#9e9e9e;
-    --accent:#ff004c;
-    --accent2:#8f00ff;
-    --border:#222;
+    --bg:#020202;
+    --panel:#0b0b0b;
+    --panel2:#141414;
+    --text:#f2f2f2;
+    --muted:#9a9a9a;
+    --accent:#ff003c;
+    --accent2:#8a00ff;
+    --border:#1f1f1f;
 }
 
 body{
     background:
-        radial-gradient(circle at top left, rgba(143,0,255,0.2), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(255,0,76,0.2), transparent 30%),
+        radial-gradient(circle at 10% 10%, rgba(255,0,60,0.25), transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(138,0,255,0.25), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 60%),
         var(--bg);
     color:var(--text);
     font-family:'Inter',sans-serif;
     overflow-x:hidden;
+    animation: pulse 6s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{filter:hue-rotate(0deg) contrast(1);}
+    50%{filter:hue-rotate(20deg) contrast(1.2);}
 }
 
 body::before{
@@ -41,11 +47,29 @@ body::before{
     position:fixed;
     inset:0;
     background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size:40px 40px;
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 3px);
     pointer-events:none;
     z-index:-1;
+    mix-blend-mode:overlay;
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(20px);}
+}
+
+.glitch{
+    position:relative;
+    animation: shake 0.4s infinite;
+}
+
+@keyframes shake{
+    0%{transform:translate(0,0);}
+    25%{transform:translate(-1px,1px);}
+    50%{transform:translate(1px,-1px);}
+    75%{transform:translate(-1px,-1px);}
+    100%{transform:translate(0,0);}
 }
 
 .hero{
@@ -56,19 +80,23 @@ body::before{
     flex-direction:column;
     text-align:center;
     padding:40px;
-    position:relative;
 }
 
 .hero h1{
-    font-size:clamp(4rem,10vw,9rem);
-    font-family:'Orbitron',sans-serif;
+    font-size:clamp(4rem,10vw,10rem);
+    font-family:'Orbitron';
     font-weight:900;
-    letter-spacing:6px;
+    letter-spacing:10px;
     background:linear-gradient(90deg,var(--accent),#fff,var(--accent2));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    text-shadow:0 0 25px rgba(255,0,76,0.5);
-    animation:glitch 4s infinite;
+    text-shadow:0 0 30px rgba(255,0,60,0.6);
+    animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker{
+    0%,100%{opacity:1; filter:blur(0px);}
+    50%{opacity:0.7; filter:blur(1px);}
 }
 
 .hero p{
@@ -79,26 +107,10 @@ body::before{
     line-height:1.7;
 }
 
-@keyframes glitch{
-    0%{transform:translate(0px,0px);}
-    20%{transform:translate(-2px,2px);}
-    40%{transform:translate(2px,-2px);}
-    60%{transform:translate(-1px,1px);}
-    80%{transform:translate(1px,-1px);}
-    100%{transform:translate(0px,0px);}
-}
-
-.scroll{
-    margin-top:40px;
-    font-size:14px;
-    color:var(--muted);
-    letter-spacing:4px;
-    animation:bounce 2s infinite;
-}
-
-@keyframes bounce{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(10px);}
+.warning{
+    color:var(--accent);
+    font-weight:700;
+    text-shadow:0 0 10px rgba(255,0,60,0.6);
 }
 
 .container{
@@ -108,54 +120,57 @@ body::before{
 
 .section-title{
     font-size:3rem;
-    font-family:'Orbitron',sans-serif;
-    margin-bottom:30px;
+    font-family:'Orbitron';
+    margin:60px 0 30px;
     background:linear-gradient(90deg,var(--accent),#fff);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
+    animation: glitchText 2s infinite;
+}
+
+@keyframes glitchText{
+    0%{transform:translate(0);}
+    20%{transform:translate(-2px,1px);}
+    40%{transform:translate(2px,-1px);}
+    60%{transform:translate(-1px,2px);}
+    80%{transform:translate(1px,-2px);}
+    100%{transform:translate(0);}
 }
 
 .cards{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:25px;
-    margin-bottom:80px;
 }
 
 .card{
     background:linear-gradient(180deg,var(--panel),var(--panel2));
     border:1px solid var(--border);
-    border-radius:24px;
+    border-radius:20px;
     padding:30px;
+    transition:0.3s;
     position:relative;
     overflow:hidden;
-    transition:0.35s;
-    backdrop-filter:blur(10px);
 }
 
 .card:hover{
-    transform:translateY(-8px) scale(1.02);
+    transform:scale(1.03) rotate(-0.5deg);
     border-color:var(--accent);
-    box-shadow:0 0 40px rgba(255,0,76,0.25);
+    box-shadow:0 0 40px rgba(255,0,60,0.3);
 }
 
-.card::before{
-    content:"";
+.card::after{
+    content:"CONTAINMENT LABEL: GOON STATE ACTIVE";
     position:absolute;
-    inset:0;
-    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.05), transparent);
-    transform:translateX(-100%);
-    transition:0.8s;
-}
-
-.card:hover::before{
-    transform:translateX(100%);
+    bottom:10px;
+    right:10px;
+    font-size:10px;
+    color:rgba(255,0,60,0.5);
 }
 
 .card h3{
-    font-size:1.7rem;
-    margin-bottom:15px;
-    font-family:'Orbitron',sans-serif;
+    font-family:'Orbitron';
+    margin-bottom:10px;
 }
 
 .card p{
@@ -169,50 +184,43 @@ body::before{
 }
 
 .gif-section{
-    margin:100px auto;
-    background:linear-gradient(145deg,#0d0d0d,#151515);
+    margin:100px 0;
     border:1px solid #2a2a2a;
-    border-radius:30px;
+    border-radius:20px;
     overflow:hidden;
-    position:relative;
+    background:radial-gradient(circle at center, rgba(255,0,60,0.1), rgba(0,0,0,1));
 }
 
 .gif-wrap{
     display:grid;
     grid-template-columns:1fr 1fr;
-    align-items:center;
 }
 
 .gif-wrap img{
     width:100%;
-    height:100%;
-    object-fit:cover;
     min-height:500px;
+    object-fit:cover;
+    filter:contrast(1.2) saturate(1.4) hue-rotate(10deg);
+    animation: jitter 0.2s infinite;
+}
+
+@keyframes jitter{
+    0%{transform:translate(0,0);}
+    50%{transform:translate(1px,-1px);}
+    100%{transform:translate(0,0);}
 }
 
 .gif-content{
-    padding:60px;
-}
-
-.gif-content h2{
-    font-size:3rem;
-    margin-bottom:20px;
-    font-family:'Orbitron',sans-serif;
-}
-
-.gif-content p{
-    color:var(--muted);
-    line-height:1.8;
-    font-size:1.1rem;
+    padding:50px;
 }
 
 .quote{
-    margin-top:25px;
+    margin-top:20px;
     padding:20px;
     border-left:4px solid var(--accent);
     background:rgba(255,255,255,0.03);
-    color:#fff;
     font-style:italic;
+    color:#fff;
 }
 
 .timeline{
@@ -224,217 +232,165 @@ body::before{
     content:"";
     position:absolute;
     left:50%;
-    top:0;
     width:4px;
     height:100%;
     background:linear-gradient(var(--accent),var(--accent2));
-    transform:translateX(-50%);
 }
 
 .entry{
     width:50%;
     padding:30px;
-    position:relative;
 }
 
-.entry:nth-child(odd){
-    left:0;
-    text-align:right;
-}
-
-.entry:nth-child(even){
-    left:50%;
-}
+.entry:nth-child(odd){left:0; text-align:right; position:relative;}
+.entry:nth-child(even){left:50%; position:relative;}
 
 .entry .box{
     background:var(--panel);
     border:1px solid var(--border);
-    border-radius:20px;
-    padding:25px;
-    display:inline-block;
-    max-width:500px;
-}
-
-.entry .box h4{
-    font-size:1.4rem;
-    margin-bottom:10px;
-}
-
-.entry .box p{
-    color:var(--muted);
-    line-height:1.7;
+    padding:20px;
+    border-radius:15px;
 }
 
 .footer{
-    padding:80px 20px;
     text-align:center;
-    color:var(--muted);
+    padding:80px 20px;
     border-top:1px solid var(--border);
-    margin-top:120px;
+    color:var(--muted);
 }
 
 .footer h2{
-    font-family:'Orbitron',sans-serif;
-    font-size:2rem;
-    margin-bottom:15px;
     color:#fff;
+    font-family:'Orbitron';
+    margin-bottom:10px;
+    animation: flicker 1s infinite;
 }
 
 .glow{
     color:var(--accent);
-    text-shadow:0 0 15px rgba(255,0,76,0.8);
+    text-shadow:0 0 15px rgba(255,0,60,0.8);
 }
 
-@media(max-width:950px){
-
-    .gif-wrap{
-        grid-template-columns:1fr;
-    }
-
-    .timeline::before{
-        left:20px;
-    }
-
-    .entry{
-        width:100%;
-        left:0 !important;
-        padding-left:60px;
-        text-align:left !important;
-    }
+@media(max-width:900px){
+    .gif-wrap{grid-template-columns:1fr;}
+    .timeline::before{left:20px;}
+    .entry{width:100%; left:0 !important; text-align:left;}
 }
 </style>
 </head>
+
 <body>
 
-<section class="hero">
+<section class="hero glitch">
     <h1>THE HOGAN FILES</h1>
     <p>
-        Deep within the digital archives lies a legendary case file:
-        <span class="highlight">James Hogan.</span>
-        A mysterious individual fueled almost entirely by Rain World, strange artistic energy,
-        chaotic internet aura, and an unexplained obsession with slugcats.
-        This site documents the phenomenon.
-    </p>
+        <span class="warning">WARNING:</span> This archive has been marked unstable.
+        Subject: <span class="highlight">James Hogan</span><br><br>
 
-    <div class="scroll">SCROLL TO INVESTIGATE</div>
+        Evidence suggests prolonged exposure to <span class="highlight">freaky fan art</span>,
+        and repeated activation of a classified mental state known as
+        <span class="highlight">“GOON PROTOCOL”</span> — a fixation loop triggered by extreme aesthetic overload.
+    </p>
 </section>
 
 <div class="container">
 
-    <h2 class="section-title">CASE NOTES</h2>
+<h2 class="section-title">FAN ART INCIDENT LOGS</h2>
 
-    <div class="cards">
+<div class="cards">
 
-        <div class="card">
-            <h3>Rain World Addiction</h3>
-            <p>
-                Sources confirm James Hogan has spent unreasonable amounts of time discussing,
-                analyzing, admiring, and obsessing over <span class="highlight">Rain World</span>.
-                Witnesses report he treats every screenshot like a sacred artifact.
-            </p>
-        </div>
+<div class="card">
+<h3>ENTRY 001 — THE FIRST IMAGE</h3>
+<p>
+Subject encounters freaky fan art of unknown origin.
+Initial response: curiosity.
+Secondary response: prolonged staring.
+GOON PROTOCOL not yet active.
+</p>
+</div>
 
-        <div class="card">
-            <h3>The "Art"</h3>
-            <p>
-                Hogan reportedly appreciates Rain World "art" at levels science still cannot explain.
-                Investigators attempting to open his folders were never seen again.
-            </p>
-        </div>
+<div class="card">
+<h3>ENTRY 014 — GOON STATE DETECTED</h3>
+<p>
+Subject enters first recorded instance of <span class="highlight">GOON STATE</span>.
+Defined as: extended fixation on distorted fan art with loss of time awareness.
+Observers report: “he stopped blinking for an hour.”
+</p>
+</div>
 
-        <div class="card">
-            <h3>Behavioral Patterns</h3>
-            <p>
-                Common symptoms include:
-                staring at Rain World GIFs for hours,
-                explaining lore nobody asked about,
-                and defending slugcats with unmatched determination.
-            </p>
-        </div>
-
-    </div>
-
-    <section class="gif-section">
-        <div class="gif-wrap">
-
-            <img src="https://cdn.discordapp.com/attachments/1124401338453852232/1286060909759828040/waka_-_kopie.gif?ex=6a1c998e&is=6a1b480e&hm=5004d1fe21ab7b3f0b5686cd93067ab869c92d2e19a4eb4c9d3328e935c2a9ea&" alt="mysterious gif">
-
-            <div class="gif-content">
-                <h2>ARCHIVED FOOTAGE</h2>
-
-                <p>
-                    The following animation was recovered from classified Hogan archives.
-                    Analysts believe it perfectly represents the exact energy emitted whenever
-                    Rain World gets mentioned in conversation.
-                </p>
-
-                <div class="quote">
-                    “James Hogan doesn’t just like Rain World.<br>
-                    He has become part of the ecosystem.”
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <h2 class="section-title">TIMELINE OF EVENTS</h2>
-
-    <div class="timeline">
-
-        <div class="entry">
-            <div class="box">
-                <h4>Phase 1 — Discovery</h4>
-                <p>
-                    James Hogan discovers Rain World and initially claims
-                    “it’s just a cool game.”
-                </p>
-            </div>
-        </div>
-
-        <div class="entry">
-            <div class="box">
-                <h4>Phase 2 — Lore Consumption</h4>
-                <p>
-                    Subject begins consuming lore at dangerous speeds.
-                    Sleep schedules become unstable.
-                </p>
-            </div>
-        </div>
-
-        <div class="entry">
-            <div class="box">
-                <h4>Phase 3 — The Art Era</h4>
-                <p>
-                    Files begin appearing.
-                    Thousands of them.
-                    Nobody asks questions anymore.
-                </p>
-            </div>
-        </div>
-
-        <div class="entry">
-            <div class="box">
-                <h4>Phase 4 — Full Transformation</h4>
-                <p>
-                    At this point James Hogan can allegedly identify every Rain World creature
-                    from a single pixel.
-                </p>
-            </div>
-        </div>
-
-    </div>
+<div class="card">
+<h3>ENTRY 031 — FULL ACTIVATION</h3>
+<p>
+GOON PROTOCOL permanently engaged.
+Subject cycles between hundreds of freaky fan art images without rest.
+All normal media rejected. Only “uncanny edits” accepted.
+</p>
+</div>
 
 </div>
 
-<footer class="footer">
-    <h2>The Hogan Files Never End</h2>
+<h2 class="section-title">ARCHIVED FAN ART FOOTAGE</h2>
 
-    <p>
-        <span class="glow">CONFIDENTIAL STATUS:</span>
-        Monitoring continues.
-        If you hear distant Rain World music at 3AM,
-        it may already be too late.
-    </p>
+<section class="gif-section">
+<div class="gif-wrap">
+
+<img src="https://cdn.discordapp.com/attachments/1124401338453852232/1286060909759828040/waka_-_kopie.gif">
+
+<div class="gif-content">
+<h2>GOON PROTOCOL FEED</h2>
+<p>
+This loop was extracted during a confirmed GOON STATE episode.
+Analysts believe the subject was no longer consuming fan art —
+but becoming synchronized with it.
+</p>
+
+<div class="quote">
+“Once GOON STATE begins… the fan art starts consuming you back.”
+</div>
+</div>
+
+</div>
+</section>
+
+<h2 class="section-title">TRANSFORMATION LOG</h2>
+
+<div class="timeline">
+
+<div class="entry">
+<div class="box">
+<h4>PHASE 1</h4>
+<p>“It’s just fan art.”</p>
+</div>
+</div>
+
+<div class="entry">
+<div class="box">
+<h4>PHASE 2</h4>
+<p>GOON PROTOCOL begins activation during late-night viewing sessions.</p>
+</div>
+</div>
+
+<div class="entry">
+<div class="box">
+<h4>PHASE 3</h4>
+<p>Subject remains in GOON STATE for extended cycles. Reality perception degrades.</p>
+</div>
+</div>
+
+<div class="entry">
+<div class="box">
+<h4>PHASE 4</h4>
+<p>Subject no longer differentiates between self and fan art.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<footer class="footer glitch">
+<h2>END OF FILE?</h2>
+<p><span class="glow">STATUS:</span> GOON PROTOCOL still running in background processes...</p>
 </footer>
 
 </body>
